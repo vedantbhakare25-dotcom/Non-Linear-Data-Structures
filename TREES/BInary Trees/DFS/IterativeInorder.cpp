@@ -1,45 +1,56 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int value)
+struct Treenode
+{
+    int data;
+    Treenode *left;
+    Treenode *right;
+    Treenode(int val)
     {
-        val=value;
+        data=val;
         left=NULL;
         right=NULL;
     }
 };
 
-vector<int> inorderTraversal(TreeNode* root) {
+vector<int> InorderTraversal(Treenode* root)
+{
     vector<int> inorder;
-    stack<TreeNode* > st;
-    if(root==NULL) return inorder;
-    while(!st.empty())
+    stack<Treenode*> st;
+    Treenode* node = root;
+
+    while (true)
     {
-        TreeNode* node = st.top();
-        st.pop();
-        if(node->right!=NULL) st.push(node->right);
-        inorder.push_back(node->val);
-        if(node->left!=NULL) st.push(node->left);
+        if (node != NULL)
+        {
+            st.push(node);        
+            node = node->left;    
+        }
+        else
+        {
+            if (st.empty()) break;
+
+            node = st.top();
+            st.pop();
+            inorder.push_back(node->data);  
+            node = node->right;              
+        }
     }
     return inorder;
 }
 
+
 int main()
 {
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-
-    vector<int> result = inorderTraversal(root);
-
-    for (int val : result) {
-        cout << val << " ";
+    Treenode *root= new Treenode(1);
+    root->left= new Treenode(2);
+    root->right= new Treenode(3);
+    root->left->left= new Treenode(4);
+    root->left->right= new Treenode(5);
+    vector<int> inorder= InorderTraversal(root);
+    for(int i=0;i<inorder.size();i++)
+    {
+        cout<<inorder[i]<<" ";
     }
-    cout << endl;
 }
