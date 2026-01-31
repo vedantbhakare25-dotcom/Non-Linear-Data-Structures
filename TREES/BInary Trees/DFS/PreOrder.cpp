@@ -13,17 +13,32 @@ struct Node
     }
 };
 
+// void preorder(Node* root)
+// {
+//     if(root== NULL)
+//     {
+//         return;
+//     }
+//     cout<<root->data<<" ";
+//     preorder(root->left);
+//     preorder(root->right);
+// }
 vector<int> preorder(Node* root)
 {
-    if(root== NULL)
+    vector<int> ans;
+    if(root==NULL)
     {
-        return {};
+        return ans;
     }
-    cout<<root->data<<" ";
-    preorder(root->left);
-    preorder(root->right);
-}
+    ans.push_back(root->data);
+    vector<int> left=preorder(root->left);  
+    vector<int> right=preorder(root->right);
+    ans.insert(ans.end(),left.begin(),left.end());
+    ans.insert(ans.end(),right.begin(),right.end());
+    return ans;
+    
 
+}
 int main()
 {
     Node *root = new Node(1);
@@ -32,6 +47,10 @@ int main()
     root->left->left=new Node(4);
     root->left->right=new Node(5);
     root->right->left=new Node(6);
-    preorder(root);
+    vector<int> result=preorder(root);
+    for(int i=0;i<result.size();i++)
+    {
+        cout<<result[i]<<" ";
+    }
     return 0;
 }
