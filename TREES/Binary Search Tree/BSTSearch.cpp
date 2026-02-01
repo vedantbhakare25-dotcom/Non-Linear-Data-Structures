@@ -28,12 +28,17 @@ treenode* insertBST(treenode* root, int val)
 
 treenode* bstSearch(treenode* root,int search)
 {
+    // while(root!=NULL && root->data!=search)
+    // {
+    //     if(search<root->data)
+    //         root=root->left;
+    //     else
+    //         root=root->right;
+    // }
+    // return root;
     while(root!=NULL && root->data!=search)
     {
-        if(search<root->data)
-            root=root->left;
-        else
-            root=root->right;
+        root=search<root->data ? root->left : root->right;
     }
     return root;
 }
