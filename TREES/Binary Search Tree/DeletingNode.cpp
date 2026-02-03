@@ -95,5 +95,6 @@ int main()
     int key=3;
     treenode *newroot=deletenode(root,key);
     // The tree now has the node with value 3 deleted.
+    cout << "Node with value " << key << " deleted from the BST." << endl;
     return 0;
 }
