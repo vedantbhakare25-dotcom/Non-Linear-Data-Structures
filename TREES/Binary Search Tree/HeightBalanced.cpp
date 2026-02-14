@@ -11,13 +11,15 @@ struct treenode
         left=right=NULL;
     }
 };
-int maxDepth(treenode *root)
+int Diameter(treenode *root)
 {
-    if(root==NULL) return 0;
-    int lh=maxDepth(root->left);
-    int rh=maxDepth(root->right);
-
-    return 1+max(lh,rh);
+    if (root->left == NULL && root->right == NULL)
+    {
+        return nodeCount++;
+    }
+    Diameter(root->left);
+    Diameter(root->right);
+    return nodeCount;
 }
 int isBalanced(treenode *root)
 {
