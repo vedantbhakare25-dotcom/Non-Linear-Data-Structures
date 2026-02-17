@@ -16,7 +16,8 @@ struct treenode
 };
 int height(treenode*root, int &diameter)
 {
-    if(!root){
+    if(!root)
+    {
         return 0;
     }
     int lh=height(root->left,diameter);
